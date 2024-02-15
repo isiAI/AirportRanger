@@ -43,12 +43,9 @@ def plot_airports(punkte_im_umkreis):
 
 
 def main():
-    st.set_page_config(layout="wide")
-    col1, col2 = st.columns(2)
-
-    col1.write('### Airport Ranger')
-    col2.write(
-        "Idea: __Max__ / Coding: __Gnasher__\n Airport Data: [Alexander Bilz](https://github.com/lxndrblz/Airports)")
+    st.set_page_config(layout="wide", page_title="Airport Ranger - find your next destination")
+    col1, col2 = st.columns([1,2], gap="large")
+    col1.write('# Airport Ranger')
 
     icao = col1.text_input(label='ICAO').upper()
     ftime = col1.number_input(max_value=3680, min_value=1, step=1, label='Time to fly in minutes')
@@ -56,12 +53,14 @@ def main():
     speed_mach = col1.number_input(max_value=3.0, min_value=0.0, step=0.01, label='Speed in Mach')
 
     col2.write('Welcome to the Airport Range Calculator, a handy tool for flight simulator enthusiasts to estimate '
-               'reachable airports based on flight speed and time. __Please note, this app is designed solely for '
-               'virtual flying and not for real-world aviation purposes.__\n'
+               'reachable airports based on flight speed and time.\n__Please note, this app is designed solely for '
+               'virtual flying and not for real-world aviation purposes.__\n\n'
                'Here\'s how it works: \n'
-               '* Input the ICAO code of your departure airport. \n* Enter your planned flying speed (KTAS) and desired '
-               'flight duration. Note: Speed input in the KTAS field overrides the Mach value. \n* For mobile users, '
-               'access the options by tapping the arrow in the top left corner. \n* Press "Start searching" to generate '
+               '* Enter the ICAO code of your starting airport. \n'
+               '* Set your duration in time to fly field that you wish to fly\n'               
+               '* Input your planned flying speed in KTAS (Knots True Airspeed) and the duration of your flight. '
+               '__Note: Entering a speed in KTAS will override any Mach number input.__ \n'
+               '* Press "Start searching" to generate '
                'a list of potential destination airports within your specified range, considering both speed and time.')
 
     col2.write('Keep in mind: \n'
@@ -71,8 +70,10 @@ def main():
                '* For safety, consider choosing airports slightly closer than the maximum range and check the flight '
                'time in a planning tool like simbrief.')
     col2.write(
-        'Our goal is to help you find a convenient airport for a leisurely post-work flight. Enjoy your simulation,'
+        'Our goal is to help you find a convenient airport for a leisurely flight. Enjoy your simulation,'
         ' and may you always have a runway for a smooth landing!')
+    col2.write(
+        "Idea: __Max__ / Coding: __Bjoern__ / Airport Data: __[Alexander Bilz](https://github.com/lxndrblz/Airports)__")
 
     if col1.button('Start searching...'):
         speed = calculate_speed(speed_kts, speed_mach)
