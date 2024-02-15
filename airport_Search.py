@@ -1,6 +1,5 @@
 import geopandas as gpd
 import pandas as pd
-import matplotlib.pyplot as plt
 import plotly.express as px
 from shapely.geometry import Point
 import streamlit as st
@@ -55,11 +54,13 @@ def main():
              'a list of potential destination airports within your specified range, considering both speed and time.')
     st.write('Keep in mind: \n'
              '* The results are approximate and do not factor in current wind or temperature conditions. \n'
-             '* The calculated range is based on a straight-line path; actual IFR flight plans may incur additional mileage. \n'
+             '* The calculated range is based on a straight-line path; actual IFR flight plans may incur additional'
+             ' mileage. \n'
              '* For safety, consider choosing airports slightly closer than the maximum range and check the flight '
              'time in a planning tool like simbrief.')
-    st.write('Our goal is to help you find a convenient airport for a leisurely post-work flight. Enjoy your simulation,'
-             ' and may you always have a runway for a smooth landing!')
+    st.write(
+        'Our goal is to help you find a convenient airport for a leisurely post-work flight. Enjoy your simulation,'
+        ' and may you always have a runway for a smooth landing!')
 
     # Sidebar inputs
     icao = st.sidebar.text_input(label='ICAO').upper()
