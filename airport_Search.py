@@ -75,7 +75,7 @@ def plot_airports(punkte_im_umkreis):
                              )
     fig2.update_layout(mapbox_style="open-street-map",
                        margin={"r": 0, "t": 20, "l": 0, "b": 0},
-                       title="Airpots in range",
+                       title="Airports in range",
                        legend_title="Airport size / click to turn on/off",
                        )
 
@@ -122,10 +122,11 @@ def main():
         distance = speed * ftime_hr
         st.write(f"Distance (rounded): {distance:.2f} nm")
 
-        gdf = load_and_prepare_data("data/airports.csv")
-        punkte_im_umkreis = find_airports_within_range(gdf, icao, distance)
-        st.write(f'Found: {len(punkte_im_umkreis)} airports')
-        plot_airports(punkte_im_umkreis)
+        with st.spinner("Searching"):
+            gdf = load_and_prepare_data("data/airports.csv")
+            punkte_im_umkreis = find_airports_within_range(gdf, icao, distance)
+            st.write(f'Found: {len(punkte_im_umkreis)} airports')
+            plot_airports(punkte_im_umkreis)
 
 
 if __name__ == "__main__":
